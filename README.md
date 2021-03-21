@@ -48,10 +48,12 @@ make coverage
 
 This service serves as a light dependency for the payment gateway service. It does not perform authorization, only supports authentication.
 
-This services reads credentials from a yaml file and has only one endpoint that can be used by the payment gateway service to validate whether a merchant has provided valid credentials.
+This service reads credentials from a yaml file and has only one endpoint that can be used by the payment gateway service to validate whether a merchant has provided valid credentials.
 
 It's not meant to be production ready by any means. I'm not using a database to simplify the service, as this service was only created so the payment gateway can simulate talking to an external system for credentials validation.
 
 The OpenAPI spec is located in the `openapi` folder. The API is made up of one endpoint only.
+
+To view the spec in Swagger UI, click [this link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/gustavooferreira/pgw-auth-service/master/openapi/spec.yaml).
 
 This service should require authentication/authorization. I have not implemented this to keep the service simple.
