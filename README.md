@@ -6,6 +6,10 @@ This repository structure follows [this convention](https://github.com/golang-st
 
 ---
 
+## Tip
+
+> If you run `make` without any targets, it will display all options available on the makefile followed by a short description.
+
 # Build
 
 To build a binary, run:
@@ -15,14 +19,6 @@ make build
 ```
 
 The `api-server` binary will be placed inside the `bin/` folder.
-
-To build the docker image, run:
-
-```bash
-make build-docker
-```
-
-The docker image is called `pgw/auth-api-server`.
 
 ---
 
@@ -40,9 +36,38 @@ To get coverage:
 make coverage
 ```
 
-## Tip
+# Docker
 
-> If you run `make` without any targets, it will display all options available on the makefile followed by a short description.
+To build the docker image, run:
+
+```bash
+make build-docker
+```
+
+The docker image is called `pgw/auth-api-server`.
+
+Create a file with some credentials, like this:
+
+```yaml
+credentials:
+  bill: pass1
+  john: pass2
+  adam: pass3
+```
+
+And run a docker container like this:
+
+```bash
+docker run --rm --name pgw-auth-service -p 127.0.0.1:9000:8080/tcp -v "$(pwd)"/db_creds.yaml:/db_creds.yaml:ro -e PGW_AUTH_APP_DATABASE_FILENAME=/db_creds.yaml pgw/auth-api-server
+```
+
+This assumes the yaml file created is called `db_creds.yaml` and is placed in the current directory.
+
+Once the container is running, you can make a request like this:
+
+```bash
+curl -i -X POST http://localhost:9000/api/v1/auth -d '{"username":"bill", "password": "pass1"}'
+```
 
 # Design
 
