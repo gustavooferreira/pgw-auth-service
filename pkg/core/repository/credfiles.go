@@ -10,18 +10,18 @@ type CredsHolder struct {
 	Credentials map[string]string `yaml:"credentials"`
 }
 
+// NewCredsHolder creates a new CredsHolder.
 func NewCredsHolder() CredsHolder {
 	return CredsHolder{}
 }
 
+// Load loads data into the CredsHolder.
 func (ch *CredsHolder) Load(data []byte) error {
 	err := yaml.Unmarshal([]byte(data), &ch)
-	if err != nil {
-		return err
-	}
-	return nil
+	return err
 }
 
+// ValidateUser checks whether username and password supplied match any in the store.
 func (ch *CredsHolder) ValidateUser(username string, password string) (valid bool) {
 	if pw, ok := ch.Credentials[username]; ok {
 		if password == pw {

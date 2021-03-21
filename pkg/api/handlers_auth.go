@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// ValidateUser handles user credentials validation
 func (s *Server) ValidateUser(c *gin.Context) {
 	bodyData := struct {
 		Username string `json:"username" binding:"required"`

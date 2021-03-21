@@ -2,6 +2,7 @@ package core
 
 import "context"
 
+// Repository represents a database holding credentials
 type Repository interface {
 	ValidateUser(username string, password string) (valid bool)
 }

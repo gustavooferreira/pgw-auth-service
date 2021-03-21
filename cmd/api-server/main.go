@@ -50,8 +50,6 @@ func mainLogic() int {
 		return 1
 	}
 
-	fmt.Printf("Creds: %+v\n", credsHolder.Credentials)
-
 	server := api.NewServer(config.Webserver.Host, config.Webserver.Port, config.Options.DevMode, logger, &credsHolder)
 
 	// Spawn SIGINT listener

@@ -83,6 +83,7 @@ func (config *Configuration) LoadConfig() (err error) {
 	return nil
 }
 
+// setDefaults sets the config default values.
 func (config *Configuration) setDefaults() {
 	// Webserver
 	config.Webserver.Host = "127.0.0.1"
@@ -93,6 +94,7 @@ func (config *Configuration) setDefaults() {
 	config.Options.LogLevel = log.INFO
 }
 
+// ParseLogLevel parses a string and returns a log level enum.
 func ParseLogLevel(level string) (logLevel log.Level, err error) {
 	level = strings.ToLower(level)
 
