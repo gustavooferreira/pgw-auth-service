@@ -12,7 +12,8 @@ type CredsHolder struct {
 
 // NewCredsHolder creates a new CredsHolder.
 func NewCredsHolder() CredsHolder {
-	return CredsHolder{}
+	ch := CredsHolder{Credentials: make(map[string]string)}
+	return ch
 }
 
 // Load loads data into the CredsHolder.
