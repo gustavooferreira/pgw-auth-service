@@ -44,7 +44,7 @@ To build the docker image, run:
 make build-docker
 ```
 
-The docker image is called `pgw/auth-api-server`.
+The docker image is named `pgw/auth-api-server`.
 
 Create a file with some credentials, like this:
 
@@ -55,7 +55,7 @@ credentials:
   adam: pass3
 ```
 
-And run a docker container like this:
+And start a docker container like this:
 
 ```bash
 docker run --rm --name pgw-auth-service -p 127.0.0.1:9000:8080/tcp -v "$(pwd)"/db_creds.yaml:/db_creds.yaml:ro -e PGW_AUTH_APP_DATABASE_FILENAME=/db_creds.yaml pgw/auth-api-server
@@ -77,8 +77,8 @@ This service reads credentials from a yaml file and has only one endpoint that c
 
 It's not meant to be production ready by any means. I'm not using a database to simplify the service, as this service was only created so the payment gateway can simulate talking to an external system for credentials validation.
 
-The OpenAPI spec is located in the `openapi` folder. The API is made up of one endpoint only.
+The OpenAPI spec is located in the `openapi` folder.
 
-To view the spec in Swagger UI, click [this link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/gustavooferreira/pgw-auth-service/master/openapi/spec.yaml).
+To view the spec in the Swagger UI [click this link](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/gustavooferreira/pgw-auth-service/master/openapi/spec.yaml).
 
-This service should require authentication/authorization. I have not implemented this to keep the service simple.
+The requests to this service should go through an authentication/authorization process as well. I have not implemented this to keep the service simple.
